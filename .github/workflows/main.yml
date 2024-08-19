@@ -2,16 +2,15 @@ name: IC
 
 on:
   push:
-    branches: 
+    branches:
         master
   pull_request:
-    branches: 
+    branches:
        master
-
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Cambiar a Ubuntu para mejor compatibilidad con Docker
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -27,10 +26,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r src/requirements.txt
 
-    # - name: Run tests
-    #   run: |
-    #     pytest
-
     - name: Log in to DockerHub
       uses: docker/login-action@v2
       with:
@@ -45,5 +40,3 @@ jobs:
 
     - name: Push Docker image to DockerHub
       run: docker push "${{ secrets.DOCKER_USERNAME }}/proyecto-python:latest"
-
-      #git action cristian
