@@ -1,15 +1,15 @@
-name: IC
+name: Integracion Continua
 on:
   push:
-    branches:
-      - main
+    branches: 
+        main
   pull_request:
-    branches:
-      - main
+    branches: 
+       main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
 
     steps:
     - name: Checkout code
@@ -39,10 +39,6 @@ jobs:
 
     - name: Push Docker image to DockerHub
       run: docker push "${{ secrets.DOCKER_USERNAME }}/proyecto-python:latest"
-
-    - name: Run Docker container
-      run: docker run --name integracion -p 5000:5000 "${{ secrets.DOCKER_USERNAME }}/proyecto-python:latest"
-
 
       #git action
       #cristian
