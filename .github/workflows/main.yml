@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9.7'
+        python-version: '3.9.13'
 
     - name: Install dependencies
       run: |
@@ -38,3 +38,4 @@ jobs:
     - name: Push Docker image to DockerHub
       run: docker push "${{ secrets.DOCKER_USERNAME }}/proyecto-python:latest"
       
+      #funciona ???
