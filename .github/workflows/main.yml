@@ -1,15 +1,13 @@
 name: Integracion Continua
+
 on:
   push:
-    branches:
+    branches: 
         main
-  pull_request:
-    branches:
-       main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
 
     steps:
     - name: Checkout code
@@ -21,7 +19,7 @@ jobs:
         python-version: '3.9.13'
 
     - name: Install dependencies
-      run:
+      run: |
         python -m pip install --upgrade pip
         pip install -r src/requirements.txt
 
