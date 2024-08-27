@@ -2,12 +2,12 @@ name: Integracion Continua
 
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -30,13 +30,14 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t proyecto-python:latest .
+      run: docker build -t cristian:latest .
 
-    - name: Update TAG
-      run: docker tag proyecto-python:latest "${{ secrets.DOCKER_USERNAME }}/proyecto-python:latest"
+    - name: Stop and Remove Existing Container
+      run: |
+        docker stop integracion || true
+        docker rm integracion || true
 
-    - name: Push Docker image to DockerHub
-      run: docker push "${{ secrets.DOCKER_USERNAME }}/proyecto-python:latest"
+    - name: Run Docker container
+      run: docker run --name integracion -p 5000:5000 cristian:latest
 
 
-      #funciona ???
